@@ -1,0 +1,28 @@
+<appwizard>
+	<introduction>
+		<name>YouBBS QuickInstall</name>
+		<author>ego008</author>
+		<icon>-</icon>
+		<homepage>-</homepage>
+		<description>
+		<![CDATA[-]]>
+		</description>
+	</introduction>
+	<platform>
+		<services>
+      <service>Mysql</service>
+      <service size="5M">Memcache</service>
+		</services>
+		<appconfig>
+			<tpl>
+            <![CDATA[
+name: <<appname>>
+version: <<version>>
+            ]]>
+			</tpl>
+		</appconfig>
+	</platform>
+	<code>
+	<initScript>install</initScript>
+	</code>
+</appwizard>

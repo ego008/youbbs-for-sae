@@ -1,0 +1,53 @@
+name: youbbs
+version: 1
+handle:
+- rewrite: if( path ~ "^n/([0-9]+)(/([0-9]*))?$" ) goto "nodepage.php?cid=$1&page=$3"
+- rewrite: if( path ~ "^t/([0-9]+)(/([0-9]*))?$" ) goto "topicpage.php?tid=$1&page=$3"
+- rewrite: if( path ~ "^page/([0-9]+)$" ) goto "indexpage.php?page=$1"
+- rewrite: if( path ~ "^tag/([a-zA-Z0-9\x80-\xff\.]{1,20})(/([0-9]+))?$" ) goto "tagpage.php?tag=$1&page=$3"
+- rewrite: if( path ~ "^notifications$" ) goto "notifications.php"
+- rewrite: if( path ~ "^favorites$" ) goto "favorites.php"
+- rewrite: if( path ~ "^feed$" ) goto "feed.php"
+- rewrite: if( path ~ "^robots.txt$" ) goto "robots.php"
+- rewrite: if( path ~ "^sitemap/([0-9]+)$" ) goto "sitemap.php?id=$1"
+- rewrite: if( path ~ "^qqlogin$" ) goto "qqlogin.php"
+- rewrite: if( path ~ "^qqcallback$" ) goto "qqcallback.php"
+- rewrite: if( path ~ "^qqsetname$" ) goto "qqsetname.php"
+- rewrite: if( path ~ "^wblogin$" ) goto "wblogin.php"
+- rewrite: if( path ~ "^wbcallback$" ) goto "wbcallback.php"
+- rewrite: if( path ~ "^wbsetname$" ) goto "wbsetname.php"
+- rewrite: if( path ~ "^forgot$" ) goto "forgot.php"
+- rewrite: if( path ~ "^upload-(650|590)$" ) goto "upload.php?mw=$1"
+- rewrite: if( path ~ "^viewat-(desktop|mobile)$" ) goto "viewat.php?via=$1"
+- rewrite: if( path ~ "^goto-t-([0-9]+)$" ) goto "gototopic.php?tid=$1"
+- rewrite: if( path ~ "^member/([a-zA-Z0-9\x80-\xff]{1,20})$" ) goto "member.php?mid=$1"
+- rewrite: if( path ~ "^newpost/([0-9]+)$" ) goto "newpost.php?cid=$1"
+- rewrite: if( path ~ "^task/sendmsg/(reply|topic)/([0-9]+)/([0-9]+)$" ) goto "sendmsg.php?biao=$1&uid=$2&id=$3"
+- rewrite: if( path ~ "^task/fenci/([0-9]+)$" ) goto "fenci.php?tid=$1"
+- rewrite: if( path ~ "^task/atping/([0-9]+)$" ) goto "autoping.php?tid=$1"
+- rewrite: if( path ~ "^setoldtopicetag$" ) goto "setoldtopicetag.php"
+- rewrite: if( path ~ "^admin-edit-post-([0-9]+)$" ) goto "admin-edit-post.php?tid=$1"
+- rewrite: if( path ~ "^admin-edit-comment-([0-9]+)$" ) goto "admin-edit-comment.php?rid=$1"
+- rewrite: if( path ~ "^admin-setuser-([0-9]+)$" ) goto "admin-setuser.php?mid=$1"
+- rewrite: if( path ~ "^admin-node(-([0-9]*))?$" ) goto "admin-node.php?nid=$2"
+- rewrite: if( path ~ "^admin-setting$" ) goto "admin-setting.php"
+- rewrite: if( path ~ "^admin-user-([a-z]+)(-([0-9]*))?$" ) goto "admin-user.php?act=$1&mid=$3"
+- rewrite: if( path ~ "^admin-link-([a-z]+)(-([0-9]*))?$" ) goto "admin-link.php?act=$1&lid=$3"
+- rewrite: if( path ~ "^(login|sigin|logout|forgot|setting|install)$" ) goto "$1.php"
+- rewrite: if( path ~ "^setdefaultavatar$" ) goto "setdefaultavatar.php"
+- rewrite: if( path ~ "^.*?templates" ) goto "404.html"
+- rewrite: if( path ~ "^.*?avatar/$" ) goto "404.html"
+- rewrite: if( path ~ "^.*?avatar/(large|normal|mini)/$" ) goto "404.html"
+- rewrite: if( path ~ "^upload/([0-9]+/)?$" ) goto "404.html"
+- errordoc: 404 /404.html
+- expire: if(path ~ "(.*)\.(js|css|jpg|png|gif|ico)") time 31536000
+- compress: if( out_header["Content-Length"] >= 1240 ) compress
+- compress: if ( out_header["Content-type"]=="text/javascript" ) compress
+- compress: if ( out_header["Content-type"]=="text/html" ) compress
+- compress: if ( out_header["Content-type"]=="image/png" ) compress
+- compress: if ( out_header["Content-type"]=="image/jpeg" ) compress
+- compress: if ( out_header["Content-type"]=="text/plain" ) compress
+- compress: if ( out_header["Use-Compress"] == "1") compress
+
+- hostaccess: if(path ~ "/task/") allow "10.0.0.0/8"
+
