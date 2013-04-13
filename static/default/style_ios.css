@@ -50,7 +50,7 @@ img.avatar {-moz-border-radius: 4px;border-radius: 4px;}
         .logo a:focus,
         .logo a:active {color: #fff;text-shadow: #666 0 0 20px;}
         .banner {float:right;padding:15px;}
-        .banner img{vertical-align: middle;}
+        .banner img{vertical-align: middle;border-radius: 4px;}
         .avatar-mini {max-height:24px;max-width:24px;}
 
 .main-wrap {min-height:75%;height: auto !important;height: 75%;width:100%;background-color:#CCC;padding:10px 0 1px 0;}
