@@ -1,12 +1,12 @@
-<?php 
-if (!defined('IN_SAESPOT')) exit('error: 403 Access Denied'); 
+<?php
+if (!defined('IN_SAESPOT')) exit('error: 403 Access Denied');
 
 echo '
 <div class="title">
     <div class="float-left fs14">
         <a href="/">',$options['name'],'</a> &raquo; 第',$page,'页 / 共',$taltol_page,'页</div>';
 if($cur_user && $cur_user['flag']>4){
-    echo '<div class="float-right"><a href="/newpost/1" rel="nofollow" class="newpostbtn">+发新帖</a></div>';
+    echo '<div class="float-right"><a href="/newpost/2" rel="nofollow" class="newpostbtn">+发新帖</a></div>';
 }
 echo '    <div class="c"></div>
 </div>
@@ -48,7 +48,7 @@ echo '    <div class="c"></div>
 }
 
 
-if($taltol_article > $options['list_shownum']){ 
+if($taltol_article > $options['list_shownum']){
 echo '<div class="pagination">';
 if($page>1){
 echo '<a href="/page/',$page-1,'" class="float-left">&laquo; 上一页</a>';

@@ -16,7 +16,7 @@ $cid = intval($_GET['cid']);
 if($cid<1){
     header('location: /');
     exit;
-}else if($cid == 17){
+}else if($cid == 1){
     echo '403: spam info forbidden.';
     exit;
 }
