@@ -73,7 +73,7 @@ if($tag_obj['articles']){
         LEFT JOIN `yunbbs_categories` c ON c.id=a.cid
         LEFT JOIN `yunbbs_users` u ON a.uid=u.id
         LEFT JOIN `yunbbs_users` ru ON a.ruid=ru.id
-        WHERE a.id in(".$ids.")";
+        WHERE a.id in(".$ids.") AND a.cid > 1";
 
     $query = $DBS->query($query_sql);
     $articledb=array();
