@@ -174,3 +174,23 @@ img.avatar {-moz-border-radius: 4px;border-radius: 4px;}
 .w500 {width:500px;}
 
 .h60 {height:60px;}
+
+#go-to-top {
+display: none;
+position: fixed;
+right: 60px;
+bottom: 100px;
+padding: 10px;
+color: #666;
+background: #DDD;
+font: 24px/12px Helvetica,Arial,Verdana,sans-serif;
+opacity: 0.7;
+outline: 0 none;
+text-decoration: none;
+text-shadow: 0 0 1px #DDD;
+vertical-align: baseline;
+-moz-border-radius: 5px;
+-khtml-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+}

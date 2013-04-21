@@ -34,6 +34,25 @@ if(isset($canonical)){
 }
 
 echo '
+<script type="text/javascript">
+    $(function(){
+        $("#go-to-top").click(function(){
+            $("html, body").animate({"scrollTop": 0}, 400);
+            return false;
+        });
+        $(window).scroll(function() {
+            var top = $(document).scrollTop();
+            var g = $("#go-to-top");
+            if (top > 300 && g.is(":hidden")) {
+                g.fadeIn();
+            } else if(top < 300 && g.is(":visible")) {
+                g.fadeOut();
+            }
+        });
+    })
+
+</script>
+
 </head>
 <body>
 <div class="header-wrap">
@@ -151,6 +170,7 @@ if($options['show_debug']){
     echo '<p>Processed in ',$totaltime,' second(s), ',$querycount,' queries</p>';
 }
 echo '    </div>
+<a style="display: none; " rel="nofollow" href="#top" id="go-to-top">▲</a>
     <!-- footer end -->
 </div>
 
