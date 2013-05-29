@@ -1,5 +1,5 @@
-<?php 
-if (!defined('IN_SAESPOT')) exit('error: 403 Access Denied'); 
+<?php
+if (!defined('IN_SAESPOT')) exit('error: 403 Access Denied');
 echo '
 <a name="1"></a>
 <div class="title"><a href="/">',$options['name'],'</a> &raquo; ',$title,'</div>
@@ -32,7 +32,7 @@ echo '
         <td width="120" align="right"></td>
         <td width="auto" align="left"><input type="submit" value="保存设置" name="submit" class="textbtn" /></td>
     </tr>
-    
+
 </tbody></table>
 </form>
 
@@ -68,7 +68,7 @@ echo '
         <td width="120" align="right"></td>
         <td width="auto" align="left"><input type="submit" value="更改密码" name="submit" class="textbtn" /></td>
     </tr>
-    
+
 </tbody></table>
 </form>
 
@@ -84,7 +84,7 @@ if($tip3){
 }
 echo '
 <form method="post" action="',$_SERVER["REQUEST_URI"],'#3">
-<input type="hidden" name="action" value="chpw" />
+<input type="hidden" name="action" value="setpw" />
 <table cellpadding="5" cellspacing="8" border="0" width="100%" class="fs12">
     <tbody>
     <tr>
@@ -103,7 +103,7 @@ echo '
         <td width="120" align="right"></td>
         <td width="auto" align="left"><input type="submit" value="设置登录密码" name="submit" class="textbtn" /></td>
     </tr>
-    
+
 </tbody></table>
 </form>
 
