@@ -28,7 +28,7 @@ $errors = array();
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $action = $_POST['action'];
     $name = addslashes(strtolower(trim($_POST["name"])));
-    
+
     if($action == 'newuser'){
         // 新增
         if($name){
@@ -51,13 +51,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $errors[] = '用户名 太长了';
             }
         }else{
-            $errors[] = '用户名 必填'; 
+            $errors[] = '用户名 必填';
         }
         //
         if(!$errors){
             $DBM = new DB_MySQL;
             $DBM->connect($servername_m, $dbport, $dbusername, $dbpassword, $dbname);
-            
+
             if($options['register_review']){
                 $flag = 1;
             }else{
@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $MMC->delete('site_infos');
             // update qqweibo
             $DBM->unbuffered_query("UPDATE `yunbbs_qqweibo` SET `uid` = '$new_uid' WHERE `openid`='$openid'");
-            
+
             //设置cookie
             $db_ucode = md5($new_uid.''.$timestamp.'00');
             $cur_uid = $new_uid;
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $getavatar = "1";
             //header('location: /');
             //exit;
-            
+
         }
     }else if($action == 'bind'){
         // 绑定
@@ -100,7 +100,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 $DBM->connect($servername_m, $dbport, $dbusername, $dbpassword, $dbname);
                                 $userid = $db_user['id'];
                                 $DBM->unbuffered_query("UPDATE `yunbbs_qqweibo` SET `uid` = '$userid' WHERE `openid`='$openid'");
-                                
+
                                 //设置缓存和cookie
                                 $db_ucode = md5($db_user['id'].$db_user['password'].$db_user['regtime'].$db_user['lastposttime'].$db_user['lastreplytime']);
                                 $cur_uid = $db_user['id'];
@@ -131,9 +131,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             }else{
                 $errors[] = '用户名 或 密码 太长了';
             }
-            
+
         }else{
-            $errors[] = '用户名、密码  必填'; 
+            $errors[] = '用户名、密码  必填';
         }
     }
 }
@@ -151,36 +151,37 @@ if(isset($gotohome)){
                       "Referer: ".$imgurl."\r\n"
           )
         );
-        
-        $context = stream_context_create($opts);
-        
-        $avatardata = file_get_contents($imgurl, false, $context);
-        
+
+        //$context = stream_context_create($opts);
+
+        //$avatardata = file_get_contents($imgurl, false, $context);
+        $avatardata = curl_file_get_contents($imgurl);
+
         $img_obj = imagecreatefromstring($avatardata);
-        
+
         if($img_obj !== false){
             // 缩略图比例
             $new_w = 73;
             $new_h = 73;
-            
+
             $new_image = imagecreatetruecolor($new_w, $new_h);
             $bg = imagecolorallocate ( $new_image, 255, 255, 255 );
             imagefill ( $new_image, 0, 0, $bg );
-            
+
             ////目标文件，源文件，目标文件坐标，源文件坐标，目标文件宽高，源宽高
             imagecopyresampled($new_image, $img_obj, 0, 0, 0, 0, $new_w, $new_h, 100, 100);
             imagedestroy($img_obj);
-            
+
             ob_start();
             imagejpeg($new_image, NULL, 95);
             $out_img = ob_get_contents();
             ob_end_clean();
-            
+
             //header("Content-type:image/jpeg");
             //echo $out_img;
             // 上传到又拍云
             include(ROOT.'/upyun.class.php');
-            
+
             $upyun = new UpYun($options['upyun_avatar_domain'], $options['upyun_user'], $options['upyun_pw']);
             // 本地调试失败
             if($upyun->writeFile('/'.$cur_uid.'.jpg', $out_img)){
@@ -192,11 +193,11 @@ if(isset($gotohome)){
                     $MMC->delete('u_'.$cur_uid);
                 }
             }
-            
+
             unset($out_img);
-            
+
         }
-        
+
     }
     header('location: /');
     exit;
