@@ -24,6 +24,10 @@ if($options['head_meta']){
     echo $options['head_meta'];
 }
 
+if(isset($meta_kw) && $meta_kw){
+    echo '
+<meta name="keywords" content="',$meta_kw,'" />';
+}
 if(isset($meta_des) && $meta_des){
     echo '
 <meta name="description" content="',$meta_des,'" />';

@@ -66,6 +66,7 @@ if(!$t_obj){
     $relative_ids = array();
     $relative_tags = array();
     $relative_topics = array();
+    $tags_raw = $t_obj['tags'];
     if($t_obj['tags']){
         $tag_list = explode(",", $t_obj['tags']);
         $new_tag_list = array();
@@ -359,6 +360,7 @@ if(count($newest_nodes)==$options['newest_node_num']){
 }
 
 //$links = get_links();
+$meta_kw = $tags_raw;
 $meta_des = $c_obj['name'].' - '.$t_obj['author'].' - '.htmlspecialchars(mb_substr($t_obj['content'], 0, 150, 'utf-8'));
 
 // 设置回复图片最大宽度
