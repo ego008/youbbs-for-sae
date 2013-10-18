@@ -158,6 +158,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     } else {
                         //var_dump($ret);
                         $rsp['status'] = 200;
+                        // 返回图片实际地址，有的是 u.qiniudn.com ，请自行修改
                         $rsp['url'] = 'http://'.$bucket.'.qiniudn.com/'.$upload_filename;
                         $rsp['msg'] = '图片已成功上传';
                     }
@@ -187,6 +188,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     } else {
                         //var_dump($ret);
                         $rsp['status'] = 200;
+                        // 返回附件实际地址，有的是 u.qiniudn.com ，请自行修改
                         $rsp['url'] = '附件：'.$up_name.' http://'.$bucket.'.qiniudn.com/'.$upload_filename;
                         $rsp['msg'] = '附件已成功上传';
                     }                    
