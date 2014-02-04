@@ -191,7 +191,8 @@ function showtime($db_time){
         }
     }else{
         // 大于一年
-        return gmdate("Y-m-d H:i:s", $db_time);
+        //return gmdate("Y-m-d H:i:s", $db_time);
+        return date("Y-m-d H:i:s", $db_time);
     }
 }
 
