@@ -17,7 +17,7 @@ if(!$options){
     $options['base_avatar_url'] = 'http://'.$options['upyun_avatar_domain'].'.b0.upaiyun.com';
 
     // 检测新增的 site_create
-    if( !$options['site_create'] ){
+    if( $options['site_create']=='0' ){
         $DBM = new DB_MySQL;
         $DBM->connect($servername_m, $dbport, $dbusername, $dbpassword, $dbname);
 
@@ -25,7 +25,8 @@ if(!$options){
         $m_obj = $DBS->fetch_one_array($query);
         if($m_obj){
             $site_create = $m_obj['regtime'];
-            $DBM->query("INSERT INTO yunbbs_settings VALUES('site_create', '$site_create')");
+            //$DBM->query("INSERT INTO yunbbs_settings VALUES('site_create', '$site_create')");
+            $DBM->query("UPDATE `yunbbs_settings` SET `value` = '$site_create' WHERE `title` = 'site_create' LIMIT 1");
             $options['site_create'] = $site_create;
         }
     }
